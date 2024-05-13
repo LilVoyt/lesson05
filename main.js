@@ -147,6 +147,18 @@ const button = document.getElementById("btnClick");
 button.addEventListener("click", () => {
     const inputValue = inputElement.value;
     arr.push(inputValue); 
+    const ul = document.getElementById('list');
+    let li = document.createElement('li');
+    li.textContent = inputElement.value;
+    ul.appendChild(li);
     inputElement.value = "";
-    console.log(arr);
 });
+
+
+const show = document.getElementById('btnShow');
+
+show.addEventListener('click', () =>{
+    const inputValue = inputElement.value;
+    inputElement.value = "";
+    console.log(inputValue);
+})
