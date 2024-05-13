@@ -142,6 +142,8 @@ inputElement.addEventListener("blur", function (e) {
 
 let arr = [];
 
+let selectedArr = [];
+
 const button = document.getElementById("btnClick");
 
 button.addEventListener("click", () => {
@@ -149,7 +151,29 @@ button.addEventListener("click", () => {
     arr.push(inputValue); 
     const ul = document.getElementById('list');
     let li = document.createElement('li');
+    const button = document.createElement("button"); 
+    button.addEventListener('click', () => {
+        li.remove();
+    })
+    button.textContent = "Click me";
     li.textContent = inputElement.value;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.addEventListener('click', () => {
+        if (checkbox.checked) {
+            li.style.color = 'red';
+            selectedArr.push(li.textContent); 
+        } else {
+            li.style.color = '';
+            const index = selectedArr.indexOf(li);
+            if (index !== -1) {
+                selectedArr.splice(index, 1);
+            }
+        }
+        console.log(selectedArr);
+    })
+    li.appendChild(button);
+    li.appendChild(checkbox);
     ul.appendChild(li);
     inputElement.value = "";
 });
@@ -162,3 +186,5 @@ show.addEventListener('click', () =>{
     inputElement.value = "";
     console.log(inputValue);
 })
+
+
